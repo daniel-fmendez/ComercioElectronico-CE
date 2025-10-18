@@ -46,7 +46,6 @@ function getFirma() {
 function genFirma(data) {
 	var hash = cifrador.digest(Crypto.MD5, data);
 	var firma = cifrador.encrypt(key, Crypto.DES_ECB, hash);
-	
 	return firma;
 }
 
@@ -62,9 +61,43 @@ function checkFirma() {
 	return match;
 }
 
-function blockCard(){
+function blockCard() {
 	str = Array(14).join("**BLOCKED CARD**")
 	writeCard(DATA_START,str);
 	print("\nTARJETA BLOQUEADA\n");
 }
 
+function getFecha() {
+	var f = new Date();
+	var dia = f.getDate(); if(dia < 10){dia = "0".concat(dia)};
+	var mes = f.getMonth() + 1; anno = f.getFullYear(); if(mes < 10){mes = "0".concat(mes)};
+	var anno = f.getFullYear(); if(anno < 10){anno = "0".concat(anno)};
+	return {
+		"dia": dia,
+		"mes": mes,
+		"anno": anno
+	};
+}
+
+function getHora() {
+	var f = new Date();
+	var h = f.getHours(); if(h < 10){h = "0".concat(h)};
+	var m = f.getMinutes(); if(m < 10){m = "0".concat(m)};
+	var s = f.getSeconds(); if(s < 10){s = "0".concat(s)}
+	return {
+		"h": h,
+		"m": m,
+		"s": s
+	};
+}
+
+
+function writeFechaYHora() {
+	var fecha = getFecha();
+	var fechaToWrite = new ByteString("FECHA:" + fecha.dia + "/" + fecha.mes + "/" + fecha.anno, ASCII);
+	writeCard("B0", fechaToWrite);
+
+	var hora = getHora();
+	var horaToWrite = new ByteString("HORA:" + hora.h + "h:" + hora.m + "m:" + hora.s + "s" , ASCII);
+	writeCard("C0", horaToWrite);
+}
