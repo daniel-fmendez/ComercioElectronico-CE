@@ -7,7 +7,9 @@ load("functionsCard.js");
 //Fecha para comparar la caducidad, más sencillo que cambiar el script de alta
 //var FECHA = new Date(); 
 var FECHA = new Date(2025,10,18); 
-/**********************************************/
+/**********************************************************/
+/*script encargado de utilizar los servicios de la tarjeta*/
+/**********************************************************/
 var wait_card = true;
 var intentos = 0;
 

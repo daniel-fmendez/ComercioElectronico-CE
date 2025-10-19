@@ -12,6 +12,9 @@ var CAD = "20/10/2025";
 
 
 var TITLE = "====================LA PRISA===================="
+	
+/**********************************************/
+/*script para la creación de una tarjeta nueva*/
 /**********************************************/
 var wait_card = true;
 var intentos = 0;
