@@ -20,10 +20,6 @@ while(wait_card && intentos < 25){
 		presentPsc();
 		
 		if(checkFirma()){
-			var cad = readCard(CAD_VALUE_START, CAD_LENGTH).toString(ASCII);
-			var [dia, mes, anno] = cad.split("/").map(Number);
-			var cadFecha = new Date(anno, mes - 1, dia);
-			
 			var viajes = Number(readCard(VIAJES_VALUE_START, VIAJES_LENGTH).toString(ASCII));
 			viajes += 10;
 			var viajesStr = viajes < 10 ? "0" + viajes : "" + viajes;
